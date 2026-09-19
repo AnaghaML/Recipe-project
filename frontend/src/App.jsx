@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { ShoppingBag, Plus, Minus, CheckCircle, Flame, Sparkles, IceCream, Utensils, FlameKindling, MessageSquare } from 'lucide-react';
@@ -22,21 +23,21 @@ export default function App() {
     'Drinks'
   ];
 
-  // 1. Options exclusively for Burgers & Pizza
+  // Options exclusively for Burgers & Pizza
   const savoryAddons = [
     { name: "Extra Cheese", price: 49 },
     { name: "Jalapeños", price: 29 },
     { name: "Truffle Oil Drizzle", price: 69 }
   ];
 
-  // 2. Options exclusively for Pastas (Italian)
+  // Options exclusively for Pastas (Italian)
   const pastaAddons = [
     { name: "Extra Parmesan Cheese", price: 49 },
     { name: "Garlic Butter Toast (2 Pcs)", price: 39 },
     { name: "Extra White Béchamel Cream", price: 45 }
   ];
 
-  // 3. Options exclusively for Chaats (Indian Street Food)
+  // Options exclusively for Chaats (Indian Street Food)
   const chaatAddons = [
     { name: "Extra Sweet Dahi (Curd)", price: 25 },
     { name: "Loaded Nylon Sev", price: 20 },
@@ -44,7 +45,7 @@ export default function App() {
     { name: "Extra Spicy Meetha Chutney", price: 15 }
   ];
 
-  // 4. Options exclusively for Desserts & Ice Creams
+  // Options exclusively for Desserts & Ice Creams
   const dessertAddons = [
     { name: "Extra Vanilla Scoop", price: 40 },
     { name: "Extra Chocolate Scoop", price: 50 },
@@ -174,7 +175,14 @@ export default function App() {
               return (
                 <div key={item._id} className="food-card">
                   <div className="card-img-wrapper">
-                    <img src={item.image} alt={item.name} />
+                    <img 
+                      src={item.image} 
+                      alt={item.name} 
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&auto=format&fit=crop";
+                      }}
+                    />
                     <span className={`diet-badge ${item.isVeg ? 'veg' : 'non-veg'}`}>
                       <span className="dot"></span>
                     </span>
